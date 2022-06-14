@@ -15,8 +15,8 @@ dependencies {
      api 'com.android.support:design:28.0.0'
      
      // 添加admore依赖
-     implementation "com.plutus.common:admore:1.2.54" // 最新版本见发版记录文档
-     implementation "com.plutus.common:admore_unity_bridge:1.2.54" // 最新版本见发版记录文档
+     implementation "com.plutus.common:admore:1.2.54_banner_7" // 最新版本见发版记录文档
+     implementation "com.plutus.common:admore_unity_bridge:1.2.54_banner_7" // 最新版本见发版记录文档
      
      // 脱糖支持
      coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'

@@ -109,6 +109,7 @@ namespace DefaultNamespace
         /// <param name="settings"></param>
         public static void Load(string placementId, string settings)
         {
+            Debug.Log("load " + settings);
             UnityBridge.CallStatic("load", placementId, settings);
         }
 
@@ -119,6 +120,26 @@ namespace DefaultNamespace
         public static void Show(string placementId)
         {
             UnityBridge.CallStatic("show", placementId);
+        }
+        
+        
+        /// <summary>
+        /// 在指定位置展示信息流广告
+        /// </summary>
+        /// <param name="placementId"></param>
+        /// <param name="rectJson"></param>
+        public static void ShowInRectangle(string placementId, string rectJson)
+        {
+            UnityBridge.CallStatic("showInRectangle", placementId, rectJson);
+        }
+
+        /// <summary>
+        /// 在底部展示信息流广告，不支持展示在顶部
+        /// </summary>
+        /// <param name="placementId"></param>
+        public static void ShowInBottom(string placementId)
+        {
+            UnityBridge.CallStatic("showInBottom", placementId);
         }
         
         /// <summary>

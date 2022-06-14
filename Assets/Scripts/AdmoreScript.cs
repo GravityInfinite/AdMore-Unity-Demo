@@ -233,15 +233,7 @@ public class AdmoreScript : MonoBehaviour
         Debug.Log("is ready " + AMUnityRewardVideo.CheckAdStatus(Constant.REWARD_PLACEMENT_ID));
         if (AMUnityRewardVideo.IsAdReady(Constant.REWARD_PLACEMENT_ID))
         {
-            if (AMUnityRewardVideo.IsAdExpired(Constant.REWARD_PLACEMENT_ID))
-            {
-                // 调用show方法，并且在加载成功之后，请主动调用Show方法
-                AMUnityRewardVideo.Load(Constant.REWARD_PLACEMENT_ID, "{}");
-            }
-            else
-            {
-                AMUnityRewardVideo.Show(Constant.REWARD_PLACEMENT_ID);
-            }
+            AMUnityRewardVideo.Show(Constant.REWARD_PLACEMENT_ID);
         }
         else
         {
@@ -278,10 +270,6 @@ public class AdmoreScript : MonoBehaviour
         {
             // 重新load广告
             AMUnityInterstitial.Load(Constant.INTERSTITIAL_PLACEMENT_ID, "{}");
-        } else if (AMUnityInterstitial.IsAdExpired(Constant.INTERSTITIAL_PLACEMENT_ID))
-        {
-            // 重新load广告
-            AMUnityInterstitial.Load(Constant.INTERSTITIAL_PLACEMENT_ID, "{}");
         }
         else
         {
@@ -294,7 +282,19 @@ public class AdmoreScript : MonoBehaviour
     {
         Debug.Log("load Native clicked");
         AMUnityNative.SetAdListener(new NativeListener());
-        AMUnityNative.Load(Constant.NATIVE_PLACEMENT_ID, "{}");
+        
+        AdSettings adSettings = new AdSettings();
+        // 1. 使用默认长宽来加载广告，SDK内部会获取合适的长宽，向广告联盟发起广告请求，会自适应展示，展示效果最佳， 推荐使用
+        // 展示广告的时候，需要使用ShowInBottom
+        // adSettings.width = AdSettings.AutoSize;
+        // adSettings.height = AdSettings.AutoSize;
+        // 2. 使用自定义长宽来加载广告，不同广告联盟可能展示效果有差异，不推荐使用，如果一定要使用的话，请留意长宽比尽可能跟联盟后台配置保持一致
+        // 以下仅做示例，请根据业务自行调整长宽比例
+        int padding = 50;
+        adSettings.width = UnityEngine.Screen.width - padding * 2;
+        adSettings.height = (UnityEngine.Screen.width - padding * 2) * 0.73f;
+        
+        AMUnityNative.Load(Constant.NATIVE_PLACEMENT_ID, adSettings.ToJson());
     }
 
     public void ShowNative()
@@ -306,15 +306,32 @@ public class AdmoreScript : MonoBehaviour
         if (!AMUnityNative.IsAdReady(Constant.NATIVE_PLACEMENT_ID))
         {
             // 重新load广告
-            AMUnityNative.Load(Constant.NATIVE_PLACEMENT_ID, "{}");
-        } else if (AMUnityNative.IsAdExpired(Constant.NATIVE_PLACEMENT_ID))
-        {
-            // 重新load广告
-            AMUnityNative.Load(Constant.NATIVE_PLACEMENT_ID, "{}");
+            AdSettings adSettings = new AdSettings();
+            // 1. 使用默认长宽来加载广告，SDK内部会获取合适的长宽，向广告联盟发起广告请求，会自适应展示，展示效果最佳， 推荐使用
+            // 展示广告的时候，需要使用ShowInBottom
+            // adSettings.width = AdSettings.AutoSize;
+            // adSettings.height = AdSettings.AutoSize;
+            // 2. 使用自定义长宽来加载广告，不同广告联盟可能展示效果有差异，不推荐使用，如果一定要使用的话，请留意长宽比尽可能跟联盟后台配置保持一致
+            // 以下仅做示例，请根据业务自行调整长宽比例
+            int padding = 50;
+            adSettings.width = UnityEngine.Screen.width - padding * 2;
+            adSettings.height = (UnityEngine.Screen.width - padding * 2) * 0.73f;
+            AMUnityNative.Load(Constant.NATIVE_PLACEMENT_ID, adSettings.ToJson());
         }
         else
         {
-            AMUnityNative.Show(Constant.NATIVE_PLACEMENT_ID);
+            // 展示广告的时候有两种方式
+            // 1. 展示在底部，load广告的时候，必须长宽设置为 AdSettings.AutoSize
+            // AMUnityNative.ShowInBottom(Constant.NATIVE_PLACEMENT_ID);
+
+            // 2. 使用自定义长宽，将广告展示在指定区域，以下仅为示例，广告尽量不要进行缩小操作，并且长宽比例请与联盟后台配置保持一致，否则部分广告平台效果可能变形
+            AdRect adRect = new AdRect();
+            int padding = 50;
+            adRect.left = padding;
+            adRect.top = 200;
+            adRect.width = UnityEngine.Screen.width - adRect.left * 2;
+            adRect.height = (UnityEngine.Screen.width - padding * 2) * 0.73f;
+            AMUnityNative.ShowInRectangle(Constant.NATIVE_PLACEMENT_ID, adRect.ToJson());
         }
     }
 
@@ -330,7 +347,17 @@ public class AdmoreScript : MonoBehaviour
     {
         Debug.Log("load Banner clicked");
         AMUnityBanner.SetAdListener(new BannerListener());
-        AMUnityBanner.Load(Constant.BANNER_PLACEMENT_ID, "{}");
+        AdSettings adSettings = new AdSettings();
+        // 1. 使用默认长宽来加载广告，SDK内部会获取合适的长宽，向广告联盟发起广告请求，会自适应展示，展示效果最佳， 推荐使用
+        // 展示广告的时候，需要使用ShowInPosition方法
+        adSettings.width = AdSettings.AutoSize;
+        adSettings.height = AdSettings.AutoSize;
+        // 2. 使用自定义长宽来加载广告，不同广告联盟可能展示效果有差异，不推荐使用，如果一定要使用的话，请留意长宽比尽可能跟联盟后台配置保持一致
+        // 以下仅做示例，请根据业务自行调整长宽比例
+        // int padding = 50;
+        // adSettings.width = UnityEngine.Screen.width - padding * 2;
+        // adSettings.height = (UnityEngine.Screen.width - padding * 2) / 6.4f;
+        AMUnityBanner.Load(Constant.BANNER_PLACEMENT_ID, adSettings.ToJson());
     }
 
     public void ShowBanner()
@@ -342,15 +369,32 @@ public class AdmoreScript : MonoBehaviour
         if (!AMUnityBanner.IsAdReady(Constant.BANNER_PLACEMENT_ID))
         {
             // 重新load广告
-            AMUnityBanner.Load(Constant.BANNER_PLACEMENT_ID, "{}");
-        } else if (AMUnityBanner.IsAdExpired(Constant.BANNER_PLACEMENT_ID))
-        {
-            // 重新load广告
-            AMUnityBanner.Load(Constant.BANNER_PLACEMENT_ID, "{}");
+            AdSettings adSettings = new AdSettings();
+            // 1. 使用默认长宽来加载广告，SDK内部会获取合适的长宽，向广告联盟发起广告请求，会自适应展示，展示效果最佳， 推荐使用
+            // 展示广告的时候，需要使用ShowInPosition方法
+            adSettings.width = AdSettings.AutoSize;
+            adSettings.height = AdSettings.AutoSize;
+            // 2. 使用自定义长宽来加载广告，不同广告联盟可能展示效果有差异，不推荐使用，如果一定要使用的话，请留意长宽比尽可能跟联盟后台配置保持一致
+            // 以下仅做示例，请根据业务自行调整长宽比例
+            // int padding = 50;
+            // adSettings.width = UnityEngine.Screen.width - padding * 2;
+            // adSettings.height = (UnityEngine.Screen.width - padding * 2) / 6.4f;
+            AMUnityBanner.Load(Constant.BANNER_PLACEMENT_ID, adSettings.ToJson());
         }
         else
         {
-            AMUnityBanner.Show(Constant.BANNER_PLACEMENT_ID);
+            // 展示广告的时候有两种方式
+            // 1. 展示在顶部或者底部，load广告的时候，必须长宽设置为 AdSettings.AutoSize
+            AMUnityBanner.ShowInPosition(Constant.BANNER_PLACEMENT_ID, AdMoreConstant.BOTTOM);
+
+            // 2. 使用自定义长宽，将广告展示在指定区域，以下仅为示例，广告尽量不要进行缩小操作，并且长宽比例请与联盟后台配置保持一致，否则部分广告平台效果可能变形
+            // AdRect adRect = new AdRect();
+            // int padding = 50;
+            // adRect.left = padding;
+            // adRect.top = 200;
+            // adRect.width = UnityEngine.Screen.width - adRect.left * 2;
+            // adRect.height = (UnityEngine.Screen.width - adRect.left * 2) / 6.4f;
+            // AMUnityBanner.ShowInRectangle(Constant.BANNER_PLACEMENT_ID, adRect.ToJson());
         }
     }
 

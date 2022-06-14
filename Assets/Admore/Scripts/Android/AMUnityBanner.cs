@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -75,7 +76,7 @@ namespace DefaultNamespace
         }
 
         /// <summary>
-        /// 加载信息流广告
+        /// 加载Banner广告
         /// </summary>
         /// <param name="placementId"></param>
         /// <param name="settings"></param>
@@ -85,16 +86,27 @@ namespace DefaultNamespace
         }
 
         /// <summary>
-        /// 展示信息流广告
+        /// 在指定位置展示Banner广告
         /// </summary>
         /// <param name="placementId"></param>
-        public static void Show(string placementId)
+        /// <param name="rectJson"></param>
+        public static void ShowInRectangle(string placementId, string rectJson)
         {
-            UnityBridge.CallStatic("show", placementId);
+            UnityBridge.CallStatic("showInRectangle", placementId, rectJson);
+        }
+
+        /// <summary>
+        /// 在顶部或者底部展示Banner广告
+        /// </summary>
+        /// <param name="placementId"></param>
+        /// <param name="adPosition"></param>
+        public static void ShowInPosition(string placementId, int adPosition)
+        {
+            UnityBridge.CallStatic("showInPosition", placementId, adPosition);
         }
         
         /// <summary>
-        /// 主动移除信息流广告
+        /// 主动移除Banner广告
         /// </summary>
         /// <param name="placementId"></param>
         public static void Remove(string placementId)
