@@ -5,7 +5,7 @@ namespace DefaultNamespace
     // Unity侧的listener
     public interface AdmoreNativeListener
     {
-        void onNativeAdLoaded(string placementId);
+        void onNativeAdLoaded(string placementId, bool isAdFilled);
 
         void onNativeAdVideoError(string placementId, string adErrorStr);
 
@@ -36,9 +36,9 @@ namespace DefaultNamespace
             this.listener = listener;
         }
 
-        void onNativeAdLoaded(string placementId)
+        void onNativeAdLoaded(string placementId, bool isAdFilled)
         {
-            listener.onNativeAdLoaded(placementId);
+            listener.onNativeAdLoaded(placementId, isAdFilled);
         }
 
         void onNativeAdVideoError(string placementId, string adErrorStr)

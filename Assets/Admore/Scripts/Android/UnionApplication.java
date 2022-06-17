@@ -10,7 +10,7 @@ public class UnionApplication  extends MultiDexApplication {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         // 在应用的application类中执行
-        GravitySDK.onAttachBaseContext(base, true, "debug", "base");
+        GravitySDK.onAttachBaseContext(base, false, "release", "master");
     }
     
     @Override

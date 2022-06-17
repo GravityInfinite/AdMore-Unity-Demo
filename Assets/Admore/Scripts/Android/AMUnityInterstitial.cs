@@ -5,7 +5,7 @@ namespace DefaultNamespace
     // Unity侧的listener
     public interface AdmoreInterstitialListener
     {
-        void onInterstitialAdLoaded(string placementId);
+        void onInterstitialAdLoaded(string placementId, bool isAdFilled);
 
         void onInterstitialAdVideoError(string placementId, string adErrorStr);
 
@@ -32,9 +32,9 @@ namespace DefaultNamespace
             this.listener = listener;
         }
 
-        void onInterstitialAdLoaded(string placementId)
+        void onInterstitialAdLoaded(string placementId, bool isAdFilled)
         {
-            listener.onInterstitialAdLoaded(placementId);
+            listener.onInterstitialAdLoaded(placementId, isAdFilled);
         }
 
         void onInterstitialAdVideoError(string placementId, string adErrorStr)

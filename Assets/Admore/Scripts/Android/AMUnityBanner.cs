@@ -6,7 +6,7 @@ namespace DefaultNamespace
     // Unity侧的listener
     public interface AdmoreBannerListener
     {
-        void onBannerAdLoaded(string placementId);
+        void onBannerAdLoaded(string placementId, bool isAdFilled);
 
         void onBannerRenderFail(string placementId, int code, string msg);
 
@@ -29,9 +29,9 @@ namespace DefaultNamespace
             this.listener = listener;
         }
 
-        void onBannerAdLoaded(string placementId)
+        void onBannerAdLoaded(string placementId, bool isAdFilled)
         {
-            listener.onBannerAdLoaded(placementId);
+            listener.onBannerAdLoaded(placementId, isAdFilled);
         }
 
         void onBannerRenderFail(string placementId, int code, string msg)

@@ -21,9 +21,9 @@ public class RewardListener : AdmoreRewardVideoListener
 {
     private const string TAG = "RewardListener";
 
-    public void onRewardedVideoAdLoaded(string placementId)
+    public void onRewardedVideoAdLoaded(string placementId, bool isAdFilled)
     {
-        Debug.Log(TAG + " onRewardedVideoAdLoaded " + placementId);
+        Debug.Log(TAG + " onRewardedVideoAdLoaded " + placementId + " " + isAdFilled);
     }
 
     public void onRewardedVideoAdFailed(string placementId, string adErrorStr)
@@ -66,9 +66,9 @@ public class InterstitialListener : AdmoreInterstitialListener
 {
     private const string TAG = "InterstitialListener";
 
-    public void onInterstitialAdLoaded(string placementId)
+    public void onInterstitialAdLoaded(string placementId, bool isAdFilled)
     {
-        Debug.Log(TAG + " onInterstitialAdLoaded " + placementId);
+        Debug.Log(TAG + " onInterstitialAdLoaded " + placementId + " " + isAdFilled);
     }
 
     public void onInterstitialAdVideoError(string placementId, string adErrorStr)
@@ -112,9 +112,9 @@ public class NativeListener : AdmoreNativeListener
 {
     private const string TAG = "NativeListener";
 
-    public void onNativeAdLoaded(string placementId)
+    public void onNativeAdLoaded(string placementId, bool isAdFilled)
     {
-        Debug.Log(TAG + " onNativeAdLoaded " + placementId);
+        Debug.Log(TAG + " onNativeAdLoaded " + placementId + " " + isAdFilled);
     }
 
     public void onNativeAdVideoError(string placementId, string adErrorStr)
@@ -168,9 +168,9 @@ public class BannerListener : AdmoreBannerListener
 {
     private const string TAG = "BannerListener";
 
-    public void onBannerAdLoaded(string placementId)
+    public void onBannerAdLoaded(string placementId, bool isAdFilled)
     {
-        Debug.Log(TAG + " " + placementId);
+        Debug.Log(TAG + " " + placementId + " " + isAdFilled);
     }
 
     public void onBannerRenderFail(string placementId, int code, string msg)
@@ -215,7 +215,7 @@ public class AdmoreScript : MonoBehaviour
     {
         Debug.Log("init sdk clicked");
         AMUnity.SetLogDebug(true);
-        AMUnity.InitSDK(Constant.APP_ID, Constant.APP_KEY, Constant.USER_ID, new InitListener());
+        AMUnity.InitSDK(Constant.APP_ID, Constant.APP_KEY, Constant.USER_ID, "test_channel", new InitListener());
     }
 
     public void LoadReward()
@@ -286,14 +286,13 @@ public class AdmoreScript : MonoBehaviour
         AdSettings adSettings = new AdSettings();
         // 1. 使用默认长宽来加载广告，SDK内部会获取合适的长宽，向广告联盟发起广告请求，会自适应展示，展示效果最佳， 推荐使用
         // 展示广告的时候，需要使用ShowInBottom
-        // adSettings.width = AdSettings.AutoSize;
-        // adSettings.height = AdSettings.AutoSize;
+        adSettings.width = AdSettings.AutoSize;
+        adSettings.height = AdSettings.AutoSize;
         // 2. 使用自定义长宽来加载广告，不同广告联盟可能展示效果有差异，不推荐使用，如果一定要使用的话，请留意长宽比尽可能跟联盟后台配置保持一致
         // 以下仅做示例，请根据业务自行调整长宽比例
-        int padding = 50;
-        adSettings.width = UnityEngine.Screen.width - padding * 2;
-        adSettings.height = (UnityEngine.Screen.width - padding * 2) * 0.73f;
-        
+        // int padding = 50;
+        // adSettings.width = UnityEngine.Screen.width - padding * 2;
+        // adSettings.height = (UnityEngine.Screen.width - padding * 2) * 0.73f;
         AMUnityNative.Load(Constant.NATIVE_PLACEMENT_ID, adSettings.ToJson());
     }
 
@@ -309,29 +308,29 @@ public class AdmoreScript : MonoBehaviour
             AdSettings adSettings = new AdSettings();
             // 1. 使用默认长宽来加载广告，SDK内部会获取合适的长宽，向广告联盟发起广告请求，会自适应展示，展示效果最佳， 推荐使用
             // 展示广告的时候，需要使用ShowInBottom
-            // adSettings.width = AdSettings.AutoSize;
-            // adSettings.height = AdSettings.AutoSize;
+            adSettings.width = AdSettings.AutoSize;
+            adSettings.height = AdSettings.AutoSize;
             // 2. 使用自定义长宽来加载广告，不同广告联盟可能展示效果有差异，不推荐使用，如果一定要使用的话，请留意长宽比尽可能跟联盟后台配置保持一致
             // 以下仅做示例，请根据业务自行调整长宽比例
-            int padding = 50;
-            adSettings.width = UnityEngine.Screen.width - padding * 2;
-            adSettings.height = (UnityEngine.Screen.width - padding * 2) * 0.73f;
+            // int padding = 50;
+            // adSettings.width = UnityEngine.Screen.width - padding * 2;
+            // adSettings.height = (UnityEngine.Screen.width - padding * 2) * 0.73f;
             AMUnityNative.Load(Constant.NATIVE_PLACEMENT_ID, adSettings.ToJson());
         }
         else
         {
             // 展示广告的时候有两种方式
             // 1. 展示在底部，load广告的时候，必须长宽设置为 AdSettings.AutoSize
-            // AMUnityNative.ShowInBottom(Constant.NATIVE_PLACEMENT_ID);
+            AMUnityNative.ShowInBottom(Constant.NATIVE_PLACEMENT_ID);
 
             // 2. 使用自定义长宽，将广告展示在指定区域，以下仅为示例，广告尽量不要进行缩小操作，并且长宽比例请与联盟后台配置保持一致，否则部分广告平台效果可能变形
-            AdRect adRect = new AdRect();
-            int padding = 50;
-            adRect.left = padding;
-            adRect.top = 200;
-            adRect.width = UnityEngine.Screen.width - adRect.left * 2;
-            adRect.height = (UnityEngine.Screen.width - padding * 2) * 0.73f;
-            AMUnityNative.ShowInRectangle(Constant.NATIVE_PLACEMENT_ID, adRect.ToJson());
+            // AdRect adRect = new AdRect();
+            // int padding = 50;
+            // adRect.left = padding;
+            // adRect.top = 200;
+            // adRect.width = UnityEngine.Screen.width - adRect.left * 2;
+            // adRect.height = (UnityEngine.Screen.width - padding * 2) * 0.73f;
+            // AMUnityNative.ShowInRectangle(Constant.NATIVE_PLACEMENT_ID, adRect.ToJson());
         }
     }
 

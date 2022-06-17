@@ -19,6 +19,7 @@ namespace DefaultNamespace
         {
             this.listener = listener;
         }
+
         void onInitSuccess()
         {
             listener.OnInitSuccess();
@@ -39,25 +40,16 @@ namespace DefaultNamespace
         /// <summary>
         /// 初始化SDK
         /// </summary>
-        /// <param name="appId"></param>
-        /// <param name="appKey"></param>
-        /// <param name="userId"></param>
-        /// <param name="listener"></param>
-        public static void InitSDK(string appId, string appKey, string userId, AdmoreInitListener listener)
+        /// <param name="appId"></param> 在admore后台获取
+        /// <param name="appKey"></param> 在admore后台获取
+        /// <param name="userId"></param> 当前用户的user id，每个用户都不相同，如果没有用户体系可以传空字符串，主要用来统计dau、人均收益等信息
+        /// <param name="channel"></param> 当前apk的渠道信息
+        /// <param name="listener"></param> 初始化结果回调
+        public static void InitSDK(string appId, string appKey, string userId, string channel,
+            AdmoreInitListener listener)
         {
             var listenerAdapter = new ListenerAdapter(listener);
-            UnityBridge.CallStatic("initSDK", appId, appKey, userId, listenerAdapter);
-        }
-
-        /// <summary>
-        /// 外部客户暂时不要调用
-        /// </summary>
-        /// <param name="isProxyEnabled"></param>
-        /// <param name="isSkipEnabled"></param>
-        /// <param name="isTargetPressureEnabled"></param>
-        public static void InternalSetup(bool isProxyEnabled, bool isSkipEnabled, bool isTargetPressureEnabled)
-        {
-            UnityBridge.CallStatic("internalSetup", isProxyEnabled, isSkipEnabled, isTargetPressureEnabled);
+            UnityBridge.CallStatic("initSDK", appId, appKey, userId, channel, listenerAdapter);
         }
 
         /// <summary>
@@ -67,6 +59,43 @@ namespace DefaultNamespace
         public static void SetLogDebug(bool isDebug)
         {
             UnityBridge.CallStatic("setLogDebug", isDebug);
+        }
+
+        /// <summary>
+        /// 设置微信SDK版本信息，可以优化联盟广告的ecpm，建议传入（可选，如果没有使用微信SDK，可以不传入）
+        /// </summary>
+        /// <param name="wxOpenSDKVersion"></param>
+        public static void SetWxOpenSDKVersion(string wxOpenSDKVersion)
+        {
+            UnityBridge.CallStatic("setWxOpenSDKVersion", wxOpenSDKVersion);
+        }
+
+        /// <summary>
+        /// 设置微信返回给用户的open id，传入后可以优化联盟广告的ecpm，建议传入（可选，如果没有使用微信SDK，可以不传入）
+        /// </summary>
+        /// <param name="wxOpenId"></param>
+        public static void SetWxOpenId(string wxOpenId)
+        {
+            UnityBridge.CallStatic("setWxOpenId", wxOpenId);
+        }
+
+        /// <summary>
+        /// 设置当前用户的经纬度信息，传入后可以优化联盟广告的ecpm，建议传入（可选）
+        /// </summary>
+        /// <param name="longitude"></param>
+        /// <param name="latitude"></param>
+        public static void SetLocation(string longitude, string latitude)
+        {
+            UnityBridge.CallStatic("setLocation", longitude, latitude);
+        }
+
+        /// <summary>
+        /// 设置只出某一个广告平台的广告，只能在测试阶段开启，一定不要上线正式环境
+        /// </summary>
+        /// <param name="adnType"></param>
+        public static void SetDebugAdnType(int adnType)
+        {
+            UnityBridge.CallStatic("setDebugAdnType", adnType);
         }
     }
 }

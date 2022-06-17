@@ -5,7 +5,7 @@ namespace DefaultNamespace
     // Unity侧的listener
     public interface AdmoreRewardVideoListener
     {
-        void onRewardedVideoAdLoaded(string placementId);
+        void onRewardedVideoAdLoaded(string placementId, bool isAdFilled);
 
         void onRewardedVideoAdFailed(string placementId, string adErrorStr);
 
@@ -32,9 +32,9 @@ namespace DefaultNamespace
             this.listener = listener;
         }
 
-        void onRewardedVideoAdLoaded(string placementId)
+        void onRewardedVideoAdLoaded(string placementId, bool isAdFilled)
         {
-            listener.onRewardedVideoAdLoaded(placementId);
+            listener.onRewardedVideoAdLoaded(placementId, isAdFilled);
         }
 
         void onRewardedVideoAdFailed(string placementId, string adErrorStr)
