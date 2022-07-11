@@ -44,12 +44,13 @@ namespace DefaultNamespace
         /// <param name="appKey"></param> 在admore后台获取
         /// <param name="userId"></param> 当前用户的user id，每个用户都不相同，如果没有用户体系可以传空字符串，主要用来统计dau、人均收益等信息
         /// <param name="channel"></param> 当前apk的渠道信息
+        /// <param name="isAgreePrivacy"></param> 当前用户是否已经同意隐私弹窗，如果传false，则admore不收集user id，并透传给各广告联盟隐私合规配置，建议如非万不得已，不要传false，会影响广告ecpm
         /// <param name="listener"></param> 初始化结果回调
-        public static void InitSDK(string appId, string appKey, string userId, string channel,
+        public static void InitSDK(string appId, string appKey, string userId, string channel, bool isAgreePrivacy,
             AdmoreInitListener listener)
         {
             var listenerAdapter = new ListenerAdapter(listener);
-            UnityBridge.CallStatic("initSDK", appId, appKey, userId, channel, listenerAdapter);
+            UnityBridge.CallStatic("initSDK", appId, appKey, userId, channel, isAgreePrivacy, listenerAdapter);
         }
 
         /// <summary>

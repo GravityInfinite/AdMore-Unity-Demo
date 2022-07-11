@@ -215,7 +215,7 @@ public class AdmoreScript : MonoBehaviour
     {
         Debug.Log("init sdk clicked");
         AMUnity.SetLogDebug(true);
-        AMUnity.InitSDK(Constant.APP_ID, Constant.APP_KEY, Constant.USER_ID, "test_channel", new InitListener());
+        AMUnity.InitSDK(Constant.APP_ID, Constant.APP_KEY, Constant.USER_ID, "test_channel", true, new InitListener());
     }
 
     public void LoadReward()
