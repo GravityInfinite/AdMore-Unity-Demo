@@ -10,6 +10,7 @@ public class UnionApplication  extends MultiDexApplication {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         // 在应用的application类中执行
+        System.out.println("admore gravity sdk attach");
         GravitySDK.onAttachBaseContext(base, false, "release", "master");
     }
     
@@ -17,6 +18,7 @@ public class UnionApplication  extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         // 在应用的application类中执行
+        System.out.println("admore gravity sdk create");
         GravitySDK.onCreate(this);
     }
 }
