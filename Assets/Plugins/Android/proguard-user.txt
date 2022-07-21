@@ -1,6 +1,7 @@
 # Plutus ADD Begin
 # AdMore要求
 -keep class com.plutus.common.admore.beans.** {*;}
+-keep class com.plutus.common.admore.network.** {*;}
 -keep class com.plutus.common.core.api.beans.** {*;}
 # unity bridge要求
 -keep public class com.plutus.common.admore.bridge.unity.**

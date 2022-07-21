@@ -52,16 +52,7 @@ namespace DefaultNamespace
             var listenerAdapter = new ListenerAdapter(listener);
             UnityBridge.CallStatic("initSDK", appId, appKey, userId, channel, isAgreePrivacy, listenerAdapter);
         }
-
-        /// <summary>
-        /// 设置SDK log是否开启，调试包可以打开，线上包请关闭
-        /// </summary>
-        /// <param name="isDebug"></param>
-        public static void SetLogDebug(bool isDebug)
-        {
-            UnityBridge.CallStatic("setLogDebug", isDebug);
-        }
-
+        
         /// <summary>
         /// 设置微信SDK版本信息，可以优化联盟广告的ecpm，建议传入（可选，如果没有使用微信SDK，可以不传入）
         /// </summary>
