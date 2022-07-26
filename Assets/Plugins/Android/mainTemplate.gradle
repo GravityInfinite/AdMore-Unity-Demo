@@ -15,19 +15,19 @@ dependencies {
      api 'com.android.support:design:28.0.0'
      
      // 添加admore依赖
-     implementation "com.plutus.common:admore:1.2.59" // 具体版本见发版记录文档
-     implementation "com.plutus.common:admore-bridge-unity:1.2.59" // 具体版本见发版记录文档
+     implementation "com.plutus.common:admore:1.2.61" // 具体版本见发版记录文档
+     implementation "com.plutus.common:admore-bridge-unity:1.2.61" // 具体版本见发版记录文档
      // 以下adapter请开发者按需添加
      // 快手
-     implementation "com.plutus.common:admore-adapter-kuaishou:1.2.59" // 具体版本见发版记录文档
+     implementation "com.plutus.common:admore-adapter-kuaishou:1.2.61" // 具体版本见发版记录文档
      // 腾讯优量汇
-     implementation "com.plutus.common:admore-adapter-gdt:1.2.59" // 具体版本见发版记录文档
+     implementation "com.plutus.common:admore-adapter-gdt:1.2.61" // 具体版本见发版记录文档
      // 头条穿山甲
-     implementation "com.plutus.common:admore-adapter-pangle:1.2.59" // 具体版本见发版记录文档
+     implementation "com.plutus.common:admore-adapter-pangle:1.2.61" // 具体版本见发版记录文档
      // Mintegral
-     implementation "com.plutus.common:admore-adapter-mintegral:1.2.59" // 具体版本见发版记录文档
+     implementation "com.plutus.common:admore-adapter-mintegral:1.2.61" // 具体版本见发版记录文档
      // 头条Gromore
-     implementation "com.plutus.common:admore-adapter-gromore:1.2.59" // 具体版本见发版记录文档
+     implementation "com.plutus.common:admore-adapter-gromore:1.2.61" // 具体版本见发版记录文档
      
      // 脱糖支持
      coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
