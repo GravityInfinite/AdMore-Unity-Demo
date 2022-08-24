@@ -13,19 +13,20 @@
             </intent-filter>
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
         </activity>
+
+        <!--    兼容Android12 给快手广告SDK增加 android:exported="true" 配置-->
+        <activity
+                android:name="com.kwad.sdk.api.proxy.app.BaseFragmentActivity$RequestInstallPermissionActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:theme="@style/TransparentDialogActivity"
+                android:exported="true"
+                tools:replace="android:exported">
+            <intent-filter>
+                <action android:name="intent.action.requestInstallPermission" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
-    <!--    兼容Android12 给快手广告SDK增加 android:exported="true" 配置-->
-    <activity
-            android:name="com.kwad.sdk.api.proxy.app.BaseFragmentActivity$RequestInstallPermissionActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/TransparentDialogActivity"
-            android:exported="true"
-            tools:replace="android:exported">
-        <intent-filter>
-            <action android:name="intent.action.requestInstallPermission" />
-
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
-    </activity>
 </manifest>
