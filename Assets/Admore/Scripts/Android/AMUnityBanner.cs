@@ -8,7 +8,7 @@ namespace DefaultNamespace
     {
         void onBannerAdLoaded(string placementId, bool isAdFilled);
 
-        void onBannerRenderFail(string placementId, int code, string msg);
+        void onBannerRenderFail(string placementId, string adErrorString);
 
         void onBannerAdShow(string placementId, string adSource, int width, int height);
         
@@ -34,9 +34,9 @@ namespace DefaultNamespace
             listener.onBannerAdLoaded(placementId, isAdFilled);
         }
 
-        void onBannerRenderFail(string placementId, int code, string msg)
+        void onBannerRenderFail(string placementId, string adErrorString)
         {
-            listener.onBannerRenderFail(placementId, code, msg);
+            listener.onBannerRenderFail(placementId, adErrorString);
         }
 
         void onBannerAdShow(string placementId, string adSource, int width, int height)

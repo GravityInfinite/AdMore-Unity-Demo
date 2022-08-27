@@ -7,7 +7,7 @@ namespace DefaultNamespace
     {
         void onInterstitialAdLoaded(string placementId, bool isAdFilled);
 
-        void onInterstitialAdVideoError(string placementId, string adErrorStr);
+        void onInterstitialAdVideoError(string placementId, string adErrorString);
 
         void onInterstitialAdShow(string placementId, string adSource);
 
@@ -37,9 +37,9 @@ namespace DefaultNamespace
             listener.onInterstitialAdLoaded(placementId, isAdFilled);
         }
 
-        void onInterstitialAdVideoError(string placementId, string adErrorStr)
+        void onInterstitialAdVideoError(string placementId, string adErrorString)
         {
-            listener.onInterstitialAdVideoError(placementId, adErrorStr);
+            listener.onInterstitialAdVideoError(placementId, adErrorString);
         }
 
         void onInterstitialAdShow(string placementId, string adSource)

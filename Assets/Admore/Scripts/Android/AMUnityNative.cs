@@ -7,7 +7,7 @@ namespace DefaultNamespace
     {
         void onNativeAdLoaded(string placementId, bool isAdFilled);
 
-        void onNativeAdVideoError(string placementId, string adErrorStr);
+        void onNativeAdVideoError(string placementId, string adErrorString);
 
         void onNativeAdShow(string placementId, string adSource, int width, int height);
 
@@ -19,7 +19,7 @@ namespace DefaultNamespace
 
         void onRenderSuccess(string placementId);
 
-        void onRenderFail(string placementId, int code, string msg);
+        void onRenderFail(string placementId, string adErrorString);
 
         void onDislikeRemoved(string placementId);
 
@@ -41,9 +41,9 @@ namespace DefaultNamespace
             listener.onNativeAdLoaded(placementId, isAdFilled);
         }
 
-        void onNativeAdVideoError(string placementId, string adErrorStr)
+        void onNativeAdVideoError(string placementId, string adErrorString)
         {
-            listener.onNativeAdVideoError(placementId, adErrorStr);
+            listener.onNativeAdVideoError(placementId, adErrorString);
         }
 
         void onNativeAdShow(string placementId, string adSource, int width, int height)
@@ -71,9 +71,9 @@ namespace DefaultNamespace
             listener.onRenderSuccess(placementId);
         }
         
-        void onRenderFail(string placementId, int code, string msg)
+        void onRenderFail(string placementId, string adErrorString)
         {
-            listener.onRenderFail(placementId, code, msg);
+            listener.onRenderFail(placementId, adErrorString);
         }
 
         void onDislikeRemoved(string placementId)

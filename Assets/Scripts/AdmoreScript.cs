@@ -26,9 +26,9 @@ public class RewardListener : AdmoreRewardVideoListener
         Debug.Log(TAG + " onRewardedVideoAdLoaded " + placementId + " " + isAdFilled);
     }
 
-    public void onRewardedVideoAdFailed(string placementId, string adErrorStr)
+    public void onRewardedVideoAdFailed(string placementId, string adErrorString)
     {
-        Debug.Log(TAG + " onRewardedVideoAdFailed " + placementId + " " + adErrorStr);
+        Debug.Log(TAG + " onRewardedVideoAdFailed " + placementId + " " + adErrorString);
     }
 
     public void onRewardedVideoAdPlayStart(string placementId, string adSource)
@@ -41,9 +41,9 @@ public class RewardListener : AdmoreRewardVideoListener
         Debug.Log(TAG + " onRewardedVideoAdPlayEnd " + placementId + " " + adSource);
     }
 
-    public void onRewardedVideoAdPlayFailed(string placementId, string adError, string adSource)
+    public void onRewardedVideoAdPlayFailed(string placementId, string adErrorString, string adSource)
     {
-        Debug.Log(TAG + " onRewardedVideoAdPlayFailed " + placementId + " " + adError + " " + adSource);
+        Debug.Log(TAG + " onRewardedVideoAdPlayFailed " + placementId + " " + adErrorString + " " + adSource);
     }
 
     public void onRewardedVideoAdClosed(string placementId, string adSource)
@@ -71,9 +71,9 @@ public class InterstitialListener : AdmoreInterstitialListener
         Debug.Log(TAG + " onInterstitialAdLoaded " + placementId + " " + isAdFilled);
     }
 
-    public void onInterstitialAdVideoError(string placementId, string adErrorStr)
+    public void onInterstitialAdVideoError(string placementId, string adErrorString)
     {
-        Debug.Log(TAG + " onInterstitialAdVideoError " + placementId + " " + adErrorStr);
+        Debug.Log(TAG + " onInterstitialAdVideoError " + placementId + " " + adErrorString);
     }
 
     public void onInterstitialAdShow(string placementId, string adSource)
@@ -117,9 +117,9 @@ public class NativeListener : AdmoreNativeListener
         Debug.Log(TAG + " onNativeAdLoaded " + placementId + " " + isAdFilled);
     }
 
-    public void onNativeAdVideoError(string placementId, string adErrorStr)
+    public void onNativeAdVideoError(string placementId, string adErrorString)
     {
-        Debug.Log(TAG + " onNativeAdVideoError " + placementId + " " + adErrorStr);
+        Debug.Log(TAG + " onNativeAdVideoError " + placementId + " " + adErrorString);
     }
 
     public void onNativeAdShow(string placementId, string adSource, int width, int height)
@@ -147,9 +147,9 @@ public class NativeListener : AdmoreNativeListener
         Debug.Log(TAG + " onRenderSuccess " + placementId);
     }
     
-    public void onRenderFail(string placementId, int code, string msg)
+    public void onRenderFail(string placementId, string adErrorString)
     {
-        Debug.Log(TAG + " onRenderSuccess " + placementId + " " + code + " " + msg);
+        Debug.Log(TAG + " onRenderSuccess " + placementId + " " + adErrorString);
     }
 
     public void onDislikeRemoved(string placementId)
@@ -173,9 +173,9 @@ public class BannerListener : AdmoreBannerListener
         Debug.Log(TAG + " " + placementId + " " + isAdFilled);
     }
 
-    public void onBannerRenderFail(string placementId, int code, string msg)
+    public void onBannerRenderFail(string placementId, string adErrorString)
     {
-        Debug.Log(TAG + " " + placementId + " " + code + " " + msg) ;
+        Debug.Log(TAG + " " + placementId + " " + adErrorString) ;
     }
 
     public void onBannerAdShow(string placementId, string adSource, int width, int height)

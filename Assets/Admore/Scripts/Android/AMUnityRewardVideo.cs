@@ -7,13 +7,13 @@ namespace DefaultNamespace
     {
         void onRewardedVideoAdLoaded(string placementId, bool isAdFilled);
 
-        void onRewardedVideoAdFailed(string placementId, string adErrorStr);
+        void onRewardedVideoAdFailed(string placementId, string adErrorString);
 
         void onRewardedVideoAdPlayStart(string placementId, string adSource);
 
         void onRewardedVideoAdPlayEnd(string placementId, string adSource);
 
-        void onRewardedVideoAdPlayFailed(string placementId, string adError, string adSource);
+        void onRewardedVideoAdPlayFailed(string placementId, string adErrorString, string adSource);
 
         void onRewardedVideoAdClosed(string placementId, string adSource);
 
@@ -37,9 +37,9 @@ namespace DefaultNamespace
             listener.onRewardedVideoAdLoaded(placementId, isAdFilled);
         }
 
-        void onRewardedVideoAdFailed(string placementId, string adErrorStr)
+        void onRewardedVideoAdFailed(string placementId, string adErrorString)
         {
-            listener.onRewardedVideoAdFailed(placementId, adErrorStr);
+            listener.onRewardedVideoAdFailed(placementId, adErrorString);
         }
 
         void onRewardedVideoAdPlayStart(string placementId, string adSource)
@@ -52,9 +52,9 @@ namespace DefaultNamespace
             listener.onRewardedVideoAdPlayEnd(placementId, adSource);
         }
 
-        void onRewardedVideoAdPlayFailed(string placementId, string adError, string adSource)
+        void onRewardedVideoAdPlayFailed(string placementId, string adErrorString, string adSource)
         {
-            listener.onRewardedVideoAdPlayFailed(placementId, adError, adSource);
+            listener.onRewardedVideoAdPlayFailed(placementId, adErrorString, adSource);
         }
 
         void onRewardedVideoAdClosed(string placementId, string adSource)
